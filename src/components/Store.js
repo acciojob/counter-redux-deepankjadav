@@ -1,7 +1,19 @@
-import { legacy_createStore as createStore, applyMiddleware } from "redux";
-import {thunk} from "redux-thunk"; // Import redux-thunk middleware
-import Reducer from "./Reducer";
+import {createStore} from 'redux';
 
-const store = createStore(Reducer, applyMiddleware(thunk));
+const initialState = {
+  count: 0};
 
-export default store;
+  function counterReducer (state = initialState,_actions){
+    switch(_actions.type){
+      case 'INCREMENT':
+        return {count: state.count + 1};
+      case 'DECREMENT':
+        return {count: state.count - 1};
+      default:
+        return state;
+    }
+  }
+
+    const store = createStore(counterReducer);
+
+    export default store;
