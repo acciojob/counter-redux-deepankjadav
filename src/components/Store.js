@@ -1,19 +1,10 @@
 import {createStore} from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import reducer from './Reducer';
 
-const initialState = {
-  count: 0};
-
-  function counterReducer (state = initialState,_actions){
-    switch(_actions.type){
-      case 'INCREMENT':
-        return {count: state.count + 1};
-      case 'DECREMENT':
-        return {count: state.count - 1};
-      default:
-        return state;
-    }
-  }
-
-    const store = createStore(counterReducer);
+let store = configureStore({
+  reducer, 
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunkMiddleware),
+});
 
     export default store;
